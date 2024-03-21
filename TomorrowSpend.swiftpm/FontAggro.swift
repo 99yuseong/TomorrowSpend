@@ -8,9 +8,9 @@
 import SwiftUI
 
 enum FontAggro: String {
-    case bold = "SB 어그로 B"
-    case medium = "SB 어그로 M"
-    case light = "SB 어그로 L"
+    case bold = "OTSBAggroB"
+    case medium = "OTSBAggroM"
+    case light = "OTSBAggroL"
 }
 
 public struct FontManager {
@@ -18,17 +18,17 @@ public struct FontManager {
         registerFont(
             bundle: Bundle.main,
             fontName: FontAggro.bold.rawValue,
-            fontExtension: ".ttf"
+            fontExtension: ".otf"
         )
         registerFont(
             bundle: Bundle.main,
             fontName: FontAggro.medium.rawValue,
-            fontExtension: ".ttf"
+            fontExtension: ".otf"
         )
         registerFont(
             bundle: Bundle.main,
             fontName: FontAggro.light.rawValue,
-            fontExtension: ".ttf"
+            fontExtension: ".otf"
         )
     }
     
