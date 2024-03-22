@@ -15,7 +15,7 @@ struct Country {
 extension Country {
     static func MockUp() -> [Country] {
         Array(
-            repeating: Country(name: "대한민국", currency: "KRW"),
+            repeating: Country(name: "일본", currency: "JPY"),
             count: 100
         )
     }

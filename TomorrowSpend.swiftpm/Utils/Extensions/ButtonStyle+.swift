@@ -12,6 +12,7 @@ struct RoundedButtonStyle: ButtonStyle {
     let fontSize: CGFloat
     let height: CGFloat
     let cornerRadius: CGFloat
+    let isEnabled: Bool
     
     func makeBody(configuration: Configuration) -> some View {
         HStack {
@@ -24,7 +25,8 @@ struct RoundedButtonStyle: ButtonStyle {
             Spacer()
         }
         .frame(height: height)
-        .background(color, in: RoundedRectangle(cornerRadius: cornerRadius))
+        .background(isEnabled ? color : Color.appGray, in: RoundedRectangle(cornerRadius: cornerRadius))
+        .animation(.easeInOut, value: isEnabled)
     }
 }
 
@@ -33,13 +35,15 @@ extension ButtonStyle where Self == RoundedButtonStyle {
         _ color: Color,
         fontSize: CGFloat = 17,
         height: CGFloat = 60,
-        cornerRadius: CGFloat = 8
+        cornerRadius: CGFloat = 8,
+        isEnabled: Bool = true
     ) -> Self {
         RoundedButtonStyle(
             color: color,
             fontSize: fontSize,
             height: height,
-            cornerRadius: cornerRadius
+            cornerRadius: cornerRadius,
+            isEnabled: isEnabled
         )
     }
 }
