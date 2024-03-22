@@ -18,9 +18,6 @@ struct CreateTripMainView: View {
                 Color.mainBg.ignoresSafeArea()
                 
                 VStack(alignment: .leading) {
-                    
-                    Spacer(minLength: 40)
-                    
                     HStack(alignment: .top) {
                         Text("내일의 소비를\n가치있게")
                             .font(.aggro(.medium, size: 34))
@@ -29,8 +26,8 @@ struct CreateTripMainView: View {
                             .font(.system(size: 34))
                     }
                     .foregroundStyle(Color.white)
-                    
-                    Spacer(minLength: 48)
+                    .padding(.top, 60)
+                    .padding(.bottom, 48)
                     
                     VStack(alignment: .leading) {
                         Text("여행에서")
