@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct InitView: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
