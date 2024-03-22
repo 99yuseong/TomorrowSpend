@@ -12,6 +12,7 @@ extension Color {
     static let mainBg = Color(hex: "#35D96D")
     static let accent = Color(hex: "#F27535")
     static let appPrimary = Color(hex: "#1C1C1C")
+    static let appGray = Color(hex: "#E5E5E5")
 }
 
 extension Color {
