@@ -9,4 +9,6 @@ import Foundation
 
 enum Icons {
     static var card = "creditcard"
+    static var check = "checkmark.circle"
+    static var exchange = "arrow.up.left.arrow.down.right.circle"
 }

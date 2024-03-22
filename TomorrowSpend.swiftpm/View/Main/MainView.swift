@@ -11,10 +11,28 @@ struct MainView: View {
     @EnvironmentObject var tripData: TripData
     
     var body: some View {
-        Text(tripData.country.name)
-        Text(tripData.country.currency)
-        Text(tripData.startDate.description)
-        Text(tripData.endDate.description)
+        TabView {
+            MainExchangeCalculateView()
+                .tabItem {
+                    Image(systemName: Icons.exchange)
+                    Text("환율 계산기")
+                }
+            
+            MainSpendCheckView()
+                .tabItem {
+                    Image(systemName: Icons.check)
+                    Text("소비 체크")
+                }
+            
+            MainSpendHistoryView()
+                .tabItem {
+                    Image(systemName: Icons.card)
+                        .fontWeight(.thin)
+                    Text("소비 내역")
+                        .font(.aggro(.light, size: 17))
+                }
+        }
+        .tint(.appPrimary)
     }
 }
 

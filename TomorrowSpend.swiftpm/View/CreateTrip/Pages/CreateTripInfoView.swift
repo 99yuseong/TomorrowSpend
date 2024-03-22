@@ -27,7 +27,7 @@ struct CreateTripInfoView: View {
             .padding(.bottom, 48)
             
             Rectangle()
-                .frame(width: .infinity, height: 300)
+                .frame(height: 300)
                 .foregroundStyle(Color.appGray)
                 .padding(.bottom, 24)
             
