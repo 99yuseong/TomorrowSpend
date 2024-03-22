@@ -30,6 +30,7 @@ struct CreateTripSelectCountryView: View {
                         Spacer()
                     }
                     .padding()
+                    .background(.white)
                     .onTapGesture {
                         pagination()
                     }

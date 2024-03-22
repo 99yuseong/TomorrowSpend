@@ -12,6 +12,8 @@ protocol TripFlowable {
 }
 
 struct CreateTripFlowView: View {
+    @EnvironmentObject var appState: AppState
+    
     private enum Page {
         case main
         case info
@@ -34,7 +36,7 @@ struct CreateTripFlowView: View {
                     case .selectCountry:
                         CreateTripSelectCountryView { page(to: .selectDate) }
                     case .selectDate:
-                        CreateTripSelectDateView {  }
+                        CreateTripSelectDateView { appState.flow(to: .main) }
                     default:
                         EmptyView()
                     }
