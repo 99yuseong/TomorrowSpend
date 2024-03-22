@@ -10,6 +10,8 @@ import SwiftUI
 extension CreateTripSelectDateView: TripFlowable {}
 
 struct CreateTripSelectDateView: View {
+    @EnvironmentObject var tripData: TripData
+    
     @State private var startDate = Date()
     @State private var endDate = Date()
     @State private var isBtnEnabled = false
@@ -54,6 +56,8 @@ struct CreateTripSelectDateView: View {
             }
             
             Button("설정 완료!") {
+                tripData.startDate = startDate
+                tripData.endDate = endDate
                 pagination()
             }
             .buttonStyle(.rounded(.appPrimary, isEnabled: isBtnEnabled))

@@ -13,6 +13,10 @@ struct Country {
 }
 
 extension Country {
+    static func empty() -> Country {
+        Country(name: "None", currency: "None")
+    }
+    
     static func MockUp() -> [Country] {
         Array(
             repeating: Country(name: "일본", currency: "JPY"),

@@ -10,6 +10,8 @@ import SwiftUI
 extension CreateTripSelectCountryView: TripFlowable { }
 
 struct CreateTripSelectCountryView: View {
+    @EnvironmentObject var tripData: TripData
+    
     var pagination: () -> ()
     
     var body: some View {
@@ -32,6 +34,7 @@ struct CreateTripSelectCountryView: View {
                     .padding()
                     .background(.white)
                     .onTapGesture {
+                        tripData.country = country
                         pagination()
                     }
                 }

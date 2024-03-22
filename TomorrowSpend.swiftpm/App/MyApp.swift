@@ -3,6 +3,7 @@ import SwiftUI
 @main
 struct MyApp: App {
     @StateObject var appState = AppState()
+    @StateObject var tripData = TripData()
     
     init() {
         FontManager.registerFonts()
@@ -12,6 +13,7 @@ struct MyApp: App {
         WindowGroup {
             InitView()
                 .environmentObject(appState)
+                .environmentObject(tripData)
         }
     }
 }
