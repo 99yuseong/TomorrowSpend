@@ -4,11 +4,15 @@ struct InitView: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        switch appState.flow {
-        case .createTrip:
-            CreateTripFlowView()
-        case .main:
-            MainView()
+        Group {
+            switch appState.flow {
+            case .createTrip:
+                CreateTripFlowView()
+            case .main:
+                MainView()
+            }
         }
+        .font(.aggro(.light, size: 17))
+        .foregroundStyle(Color.appPrimary)
     }
 }
