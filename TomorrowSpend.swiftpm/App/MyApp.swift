@@ -14,6 +14,11 @@ struct MyApp: App {
             InitView()
                 .environmentObject(appState)
                 .environmentObject(tripData)
+                .onAppear {
+                    DispatchQueue.global().async {
+                        CurrencyManager.shared.fetchCurrencyExchangeData()
+                    }
+                }
         }
     }
 }

@@ -7,7 +7,15 @@
 
 import Foundation
 
+
 struct Currency {
+    var unit: String
+    var countryName: String
+    var unitInKorean: String
+    var exchangeRate: Double
+}
+
+struct Currency_Deprecated {
     var country: String
     var symbol: String
     var code: String

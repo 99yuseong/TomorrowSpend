@@ -11,9 +11,9 @@ extension SpendRecordTypingView: Flowable { }
 
 struct SpendRecordTypingView: View {
     
-    @State private var currencyList: [Currency] = [
-        Currency(country: "일본", symbol: "JPY", code: "JP"),
-        Currency(country: "대한민국", symbol: "KRW", code: "KR")
+    @State private var currencyList: [Currency_Deprecated] = [
+        Currency_Deprecated(country: "일본", symbol: "JPY", code: "JP"),
+        Currency_Deprecated(country: "대한민국", symbol: "KRW", code: "KR")
     ]
     
     @State private var selectedCurrency: Int = 0

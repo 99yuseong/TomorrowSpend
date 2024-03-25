@@ -11,7 +11,7 @@ extension SpendRecordSatisfyView: Flowable { }
 
 struct SpendRecordSatisfyView: View {
     
-    @State private var satisfaction: Satisfaction = .notSet
+    @State private var satisfaction: SpendSatisfaction = .notSet
     
     var pagination: () -> ()
     
@@ -35,7 +35,7 @@ struct SpendRecordSatisfyView: View {
                                 .transition(.identity)
                         }
                     }
-                    Text(Satisfaction.notSet.description)
+                    Text(SpendSatisfaction.notSet.description)
                 }
                 .onTapGesture {
                     withAnimation {
@@ -55,7 +55,7 @@ struct SpendRecordSatisfyView: View {
                                 .transition(.identity)
                         }
                     }
-                    Text(Satisfaction.satisfied.description)
+                    Text(SpendSatisfaction.satisfied.description)
                 }
                 .onTapGesture {
                     withAnimation {
@@ -75,7 +75,7 @@ struct SpendRecordSatisfyView: View {
                                 .transition(.identity)
                         }
                     }
-                    Text(Satisfaction.dissatisfied.description)
+                    Text(SpendSatisfaction.dissatisfied.description)
                 }
                 .onTapGesture {
                     withAnimation {
