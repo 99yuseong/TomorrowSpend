@@ -10,6 +10,8 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var tripData: TripData
     
+    @State private var isPresented: Bool = true
+    
     var body: some View {
         TabView {
             MainExchangeCalculateView()
@@ -33,6 +35,9 @@ struct MainView: View {
                 }
         }
         .tint(.appPrimary)
+        .sheet(isPresented: $isPresented) {
+            SpendRecordFlowView()
+        }
     }
 }
 

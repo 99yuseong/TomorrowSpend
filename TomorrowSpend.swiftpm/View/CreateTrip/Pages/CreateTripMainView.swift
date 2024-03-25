@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension CreateTripMainView: TripFlowable {}
+extension CreateTripMainView: Flowable {}
 
 struct CreateTripMainView: View {
     var pagination: () -> ()

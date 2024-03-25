@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension CreateTripSelectCountryView: TripFlowable { }
+extension CreateTripSelectCountryView: Flowable { }
 
 struct CreateTripSelectCountryView: View {
     @EnvironmentObject var tripData: TripData

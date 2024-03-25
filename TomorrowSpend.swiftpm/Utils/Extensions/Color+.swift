@@ -14,6 +14,7 @@ extension Color {
     static let appPrimary = Color(hex: "#1C1C1C")
     static let appGray = Color(hex: "#E5E5E5")
     static let gray4 = Color(hex: "#818181")
+    static let gray5 = Color(hex: "#9A9A9A")
 }
 
 extension Color {

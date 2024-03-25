@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol TripFlowable {
+protocol Flowable {
     var pagination: () -> () { get set }
 }
 

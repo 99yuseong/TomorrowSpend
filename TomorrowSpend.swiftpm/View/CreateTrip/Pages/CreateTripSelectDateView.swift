@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension CreateTripSelectDateView: TripFlowable {}
+extension CreateTripSelectDateView: Flowable {}
 
 struct CreateTripSelectDateView: View {
     @EnvironmentObject var tripData: TripData
