@@ -45,6 +45,7 @@ struct CreateTripFlowView: View {
                 .transition(.reverSlide)
             }
         }
+        .background(Color.mainBg)
         .onAppear {
             DispatchQueue.global().async {
                 countries = CountryManager.shared.loadCountryData()

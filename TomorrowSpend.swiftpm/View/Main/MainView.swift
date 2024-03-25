@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var appState: AppState
     
-    @State private var isPresented: Bool = true
+    @State private var isPresented: Bool = false
     
     var body: some View {
         TabView {
@@ -37,6 +37,9 @@ struct MainView: View {
         .tint(.appPrimary)
         .sheet(isPresented: $isPresented) {
             SpendRecordFlowView()
+        }
+        .onAppear {
+            isPresented = true
         }
     }
 }
