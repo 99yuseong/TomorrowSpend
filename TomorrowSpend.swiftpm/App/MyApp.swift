@@ -16,7 +16,8 @@ struct MyApp: App {
                 .environmentObject(tripData)
                 .onAppear {
                     DispatchQueue.global().async {
-                        CurrencyManager.shared.fetchCurrencyExchangeData()
+                        appState.countries = CountryManager.shared.loadCountryData()
+                        print(CountryManager.shared.loadCountryData())
                     }
                 }
         }

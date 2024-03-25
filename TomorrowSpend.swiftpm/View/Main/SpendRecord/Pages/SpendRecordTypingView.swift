@@ -11,11 +11,7 @@ extension SpendRecordTypingView: Flowable { }
 
 struct SpendRecordTypingView: View {
     
-    @State private var currencyList: [Currency_Deprecated] = [
-        Currency_Deprecated(country: "일본", symbol: "JPY", code: "JP"),
-        Currency_Deprecated(country: "대한민국", symbol: "KRW", code: "KR")
-    ]
-    
+    @State private var currencyList: [Currency] = []
     @State private var selectedCurrency: Int = 0
     @State private var amount: String = ""
     
@@ -104,7 +100,7 @@ struct SpendRecordTypingView: View {
             selectedCurrency = idx
         } label: {
             VStack(spacing: -12) {
-                Text(currencyList[idx].symbol)
+                Text(currencyList[idx].unit)
                     .padding()
                 if selectedCurrency == idx {
                     RoundedRectangle(cornerRadius: 1.5)

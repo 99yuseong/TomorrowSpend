@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExchangeDTO: Codable {
+struct ExchangeFromKoreanEximDTO: Codable {
     
     /// 조회결과) 1 : 성공, 2 : DATA코드 오류, 3 : 인증코드 오류, 4 : 일일제한횟수 마감
     let result: Int?
@@ -58,7 +58,6 @@ struct ExchangeDTO: Codable {
     func toCurrency() -> Currency {
         Currency(
             unit: curUnit ?? "",
-            countryName: curNm?.components(separatedBy: " ").first ?? "",
             unitInKorean: curNm?.components(separatedBy: " ").last ?? "",
             exchangeRate: Double(tts ?? "0") ?? 0
         )

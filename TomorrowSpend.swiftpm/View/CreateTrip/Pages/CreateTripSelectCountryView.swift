@@ -10,6 +10,7 @@ import SwiftUI
 extension CreateTripSelectCountryView: Flowable { }
 
 struct CreateTripSelectCountryView: View {
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var tripData: TripData
     
     var pagination: () -> ()
@@ -25,9 +26,9 @@ struct CreateTripSelectCountryView: View {
             .padding(.top, 60)
             
             ScrollView {
-                ForEach(Country.MockUp(), id: \.name) { country in
+                ForEach(appState.countries, id: \.countryCode) { country in
                     HStack {
-                        Text(country.name)
+                        Text(country.nameKR)
                             .font(.aggro(.light, size: 20))
                         Spacer()
                     }

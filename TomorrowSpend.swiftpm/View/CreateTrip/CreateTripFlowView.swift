@@ -23,6 +23,7 @@ struct CreateTripFlowView: View {
     }
     
     @State private var pageTo: Page = .main
+    @State private var countries: [Country] = []
     
     var body: some View {
         NavigationStack {
@@ -42,6 +43,11 @@ struct CreateTripFlowView: View {
                     }
                 }
                 .transition(.reverSlide)
+            }
+        }
+        .onAppear {
+            DispatchQueue.global().async {
+                countries = CountryManager.shared.loadCountryData()
             }
         }
     }

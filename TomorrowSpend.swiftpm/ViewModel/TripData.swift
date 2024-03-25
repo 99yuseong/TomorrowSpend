@@ -13,7 +13,7 @@ class TripData: ObservableObject {
     var endDate: Date
     
     init(
-        country: Country = Country.empty(),
+        country: Country = Country(),
         startDate: Date = Date(),
         endDate: Date = Date()
     ) {

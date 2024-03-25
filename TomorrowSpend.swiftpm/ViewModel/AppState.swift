@@ -8,7 +8,8 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var flow: Flow = .main
+    @Published var flow: Flow = .createTrip
+    var countries: [Country] = []
 }
 
 extension AppState {
