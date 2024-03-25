@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var tripData: TripData
+    @EnvironmentObject var appState: AppState
     
     @State private var isPresented: Bool = true
     

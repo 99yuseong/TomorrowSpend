@@ -11,12 +11,22 @@ extension CreateTripSelectCountryView: Flowable { }
 
 struct CreateTripSelectCountryView: View {
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var tripData: TripData
+    
+    @State private var searchText = ""
+    @FocusState private var isFocused: Bool
+    
+    var filteredCountries: [Country] {
+        if searchText.isEmpty {
+            return appState.countries.sorted { $0.nameKR < $1.nameKR }
+        } else {
+            return appState.countries.filter { $0.nameKR.contains(searchText) }
+        }
+    }
     
     var pagination: () -> ()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
+        VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .leading) {
                 Text("어디로")
                     .foregroundStyle(Color.main)
@@ -25,8 +35,16 @@ struct CreateTripSelectCountryView: View {
             .font(.aggro(.medium, size: 34))
             .padding(.top, 60)
             
+            TextField("검색", text: $searchText)
+                .padding()
+                .foregroundStyle(Color.appPrimary)
+                .background(Color.appGray.opacity(0.5))
+                .focused($isFocused)
+                .disableAutocorrection(true)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            
             ScrollView {
-                ForEach(appState.countries, id: \.countryCode) { country in
+                ForEach(filteredCountries, id: \.countryCode) { country in
                     HStack {
                         Text(country.nameKR)
                             .font(.aggro(.light, size: 20))
@@ -35,9 +53,11 @@ struct CreateTripSelectCountryView: View {
                     .padding()
                     .background(.white)
                     .onTapGesture {
-                        tripData.country = country
+                        isFocused = false
+                        appState.updateTripCountryData(country)
                         pagination()
                     }
+                    
                 }
             }
         }

@@ -13,11 +13,9 @@ struct MyApp: App {
         WindowGroup {
             InitView()
                 .environmentObject(appState)
-                .environmentObject(tripData)
                 .onAppear {
                     DispatchQueue.global().async {
-                        appState.countries = CountryManager.shared.loadCountryData()
-                        print(CountryManager.shared.loadCountryData())
+                        appState.loadCountries()
                     }
                 }
         }
