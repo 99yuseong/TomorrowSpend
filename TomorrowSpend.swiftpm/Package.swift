@@ -8,19 +8,19 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "TomorrowSpend",
+    name: "내일의 소비",
     platforms: [
         .iOS("16.0")
     ],
     products: [
         .iOSApplication(
-            name: "TomorrowSpend",
+            name: "내일의 소비",
             targets: ["AppModule"],
             bundleIdentifier: "com.yuseong.com.TomorrowSpend",
             teamIdentifier: "Q6CK9777WL",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .cloud),
+            appIcon: .asset("AppIcon"),
             accentColor: .asset("AccentColor"),
             supportedDeviceFamilies: [
                 .pad,
