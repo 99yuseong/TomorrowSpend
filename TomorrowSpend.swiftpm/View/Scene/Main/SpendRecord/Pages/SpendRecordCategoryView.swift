@@ -89,16 +89,16 @@ struct SpendRecordCategoryView: View {
     @ViewBuilder
     func recommedationView(_ item: String) -> some View {
         Text(item)
-            .foregroundStyle(recommedSelected == item ? Color.accent : Color.appPrimary)
+            .foregroundStyle(recommedSelected == item ? Color.blue : Color.appPrimary)
             .font(.aggro(.light, size: 17))
             .padding(.top, 10)
             .padding([.horizontal, .bottom], 8)
             .overlay(
                 ZStack {
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(recommedSelected == item ? Color.accent : Color.appPrimary, lineWidth: 2)
+                        .stroke(recommedSelected == item ? Color.blue : Color.appPrimary, lineWidth: 2)
                     RoundedRectangle(cornerRadius: 4)
-                        .foregroundStyle(recommedSelected == item ? Color.accent.opacity(0.05): Color.clear)
+                        .foregroundStyle(recommedSelected == item ? Color.blue.opacity(0.05): Color.clear)
                 }
             )
     }
@@ -107,12 +107,11 @@ struct SpendRecordCategoryView: View {
     func selectionView(_ item: SpendCategory) -> some View {
         VStack {
             ZStack {
-                Circle()
-                    .frame(width: 60)
-                    .foregroundStyle(Color.appGray)
+                SpendingCategoryImage(category: item, size: .small)
+                
                 if category == item {
                     Circle()
-                        .stroke(Color.main, lineWidth: 4)
+                        .stroke(Color.blue, lineWidth: 4)
                         .frame(width: 60)
                         .transition(.identity)
                 }

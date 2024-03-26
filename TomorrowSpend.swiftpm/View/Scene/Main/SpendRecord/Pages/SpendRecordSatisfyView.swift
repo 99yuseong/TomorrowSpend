@@ -25,9 +25,7 @@ struct SpendRecordSatisfyView: View {
             HStack(spacing: 24) {
                 VStack {
                     ZStack {
-                        Circle()
-                            .frame(width: 60)
-                            .foregroundStyle(Color.appGray)
+                        SpendingSatisfactionImage(satisfaction: .notSet, size: .large)
                         if satisfaction == .notSet {
                             Circle()
                                 .stroke(Color.main, lineWidth: 4)
@@ -45,9 +43,7 @@ struct SpendRecordSatisfyView: View {
                 
                 VStack {
                     ZStack {
-                        Circle()
-                            .frame(width: 60)
-                            .foregroundStyle(Color.appGray)
+                        SpendingSatisfactionImage(satisfaction: .satisfied, size: .large)
                         if satisfaction == .satisfied {
                             Circle()
                                 .stroke(Color.main, lineWidth: 4)
@@ -65,9 +61,8 @@ struct SpendRecordSatisfyView: View {
                 
                 VStack {
                     ZStack {
-                        Circle()
-                            .frame(width: 60)
-                            .foregroundStyle(Color.appGray)
+                        SpendingSatisfactionImage(satisfaction: .dissatisfied, size: .large)
+                        
                         if satisfaction == .dissatisfied {
                             Circle()
                                 .stroke(Color.main, lineWidth: 4)

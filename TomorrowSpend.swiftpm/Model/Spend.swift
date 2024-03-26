@@ -5,7 +5,7 @@
 //  Created by 남유성 on 3/27/24.
 //
 
-import Foundation
+import SwiftUI
 
 struct Spend {
     var currencyType: String
@@ -65,7 +65,39 @@ enum SpendCategory: CaseIterable {
         }
     }
     
+    var iconImageFont: String {
+        switch self {
+        case .meal:
+            return "🍔"
+        case .transportation:
+            return "🚕"
+        case .shopping:
+            return "🛍"
+        case .snack:
+            return "🍎"
+        case .lodging:
+            return "🛏"
+        case .others:
+            return "😎"
+        }
+    }
     
+    var iconBackground: Color {
+        switch self {
+        case .meal:
+            return .gray.opacity(0.15)
+        case .transportation:
+            return .blue.opacity(0.15)
+        case .shopping:
+            return .yellow.opacity(0.15)
+        case .snack:
+            return .green.opacity(0.15)
+        case .lodging:
+            return .red.opacity(0.1)
+        case .others:
+            return .brown.opacity(0.15)
+        }
+    }
 }
 
 enum SpendSatisfaction: CaseIterable {
@@ -81,6 +113,28 @@ enum SpendSatisfaction: CaseIterable {
             "만족"
         case .dissatisfied:
             "아쉽"
+        }
+    }
+    
+    var iconImageFont: String {
+        switch self {
+        case .notSet:
+            "🔜"
+        case .satisfied:
+            "😄"
+        case .dissatisfied:
+            "😡"
+        }
+    }
+    
+    var iconBackground: Color {
+        switch self {
+        case .notSet:
+            return .gray.opacity(0.15)
+        case .satisfied:
+            return .green.opacity(0.2)
+        case .dissatisfied:
+            return .red.opacity(0.2)
         }
     }
 }

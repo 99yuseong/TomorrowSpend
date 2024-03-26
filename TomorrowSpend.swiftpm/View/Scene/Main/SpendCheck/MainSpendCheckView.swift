@@ -62,7 +62,7 @@ struct MainSpendCheckView: View {
                 LazyVStack {
                     ForEach(spendingHistory.history) { spending in
                         HStack {
-                            Text("😀 😃")
+                            Text(spending.category.iconImageFont)
                                 .font(.tossFace(size: 20))
                                 .onAppear {
                                     for family: String in UIFont.familyNames {
