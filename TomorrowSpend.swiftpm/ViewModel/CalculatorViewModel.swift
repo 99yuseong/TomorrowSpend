@@ -32,7 +32,9 @@ class CalculatorViewModel: ObservableObject {
         
         return last == "."
     }
-    
+}
+
+extension CalculatorViewModel {
     func inputNum(_ number: String) {
         display += number
         expression += number

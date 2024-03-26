@@ -56,6 +56,7 @@ struct CreateTripSelectCountryView: View {
                     .onTapGesture {
                         isFocused = false
                         tripData.updateCountry(to: country)
+                        tripData.updateCurrency()
                         pagination()
                     }
                 }

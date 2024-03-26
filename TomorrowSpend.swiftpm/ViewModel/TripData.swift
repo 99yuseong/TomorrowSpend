@@ -39,9 +39,13 @@ extension TripData {
         self.endDate = endDate
     }
     
-    func updateCurrency(for dict: [String: Double]) {
-        for currency in country.currencies {
-            currency.exchangeRate = dict[currency.code] ?? 0
+    func updateCurrency() {
+        DataNetworkingMananger.shared.fetchExchangeRate { [weak self] dict in
+            guard let self = self else { return }
+            
+            for currency in self.country.currencies {
+                currency.exchangeRate = dict[currency.code] ?? 0
+            }
         }
     }
 }

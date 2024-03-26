@@ -40,9 +40,10 @@ struct MainView: View {
         }
         .onAppear {
             isPresented = true
-            DataNetworkingMananger.shared.fetchExchangeRate { dict in
-                tripData.updateCurrency(for: dict)
-            }
+//            DataNetworkingMananger.shared.fetchExchangeRate { dict in
+//                tripData.updateCurrency(for: dict)
+//                print("end")
+//            }
         }
     }
 }

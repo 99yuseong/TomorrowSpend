@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct MainExchangeCalculateView: View {    
+struct MainExchangeCalculateView: View {  
+    @EnvironmentObject var tripData: TripData
     
     @StateObject var model = CalculatorViewModel()
     @State private var isCalculating: Bool = false
@@ -20,7 +21,7 @@ struct MainExchangeCalculateView: View {
                     Text("\(defaultAmount().toString())\(currencyUnit())")
                         .foregroundStyle(Color.main)
                     Text("=")
-                    Text("1000원")
+                    Text("\(toKRW(of: defaultAmount()))")
                         .foregroundStyle(Color.accent)
                 }
             }
@@ -89,9 +90,7 @@ struct MainExchangeCalculateView: View {
 
 extension MainExchangeCalculateView {
     func toKRW(of num: Double) -> String {
-        // TODO: - 환율 계산
-        var result = num * 10
-        return result.toString() + "원"
+        return (num / tripData.country.currencies[0].exchangeRate).toString(maxFractionDigit: 0) + "원"
     }
     
     func defaultAmount() -> Double {
@@ -100,8 +99,7 @@ extension MainExchangeCalculateView {
     }
     
     func currencyUnit() -> String {
-        // TODO: - 국가별 단위
-        "엔"
+        return tripData.country.currencies[0].code
     }
 }
 
