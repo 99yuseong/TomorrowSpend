@@ -18,7 +18,7 @@ class SpendingHistoryModel: ObservableObject {
 extension SpendingHistoryModel {
     static func mockup() -> SpendingHistoryModel {
         SpendingHistoryModel(
-            history: (0..<100).map {
+            history: (0..<10).map {
                 SpendingModel(
                     type: .card,
                     category: .meal,
