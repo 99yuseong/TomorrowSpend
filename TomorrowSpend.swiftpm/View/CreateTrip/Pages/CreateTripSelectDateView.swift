@@ -53,8 +53,7 @@ struct CreateTripSelectDateView: View {
             }
             
             Button("설정 완료!") {
-                tripData.startDate = startDate
-                tripData.endDate = endDate
+                tripData.updateDate(from: startDate, to: endDate)
                 pagination()
             }
             .buttonStyle(.rounded(.appPrimary, isEnabled: isBtnEnabled))

@@ -24,28 +24,3 @@ extension AppState {
         }
     }
 }
-//
-//// MARK: - Trip Data
-//extension AppState {
-//    public func updateTripCountryData(_ newCountry: Country) {
-//        self.tripData.country = newCountry
-//    }
-//    
-//    public func updateTripDate(start startDate: Date, end endDate: Date) {
-//        self.tripData.startDate = startDate
-//        self.tripData.endDate = endDate
-//    }
-//}
-//
-//// MARK: - NetWork
-//extension AppState {
-//    public func loadCountries() {
-//        self.countries = CountryManager.shared.loadCountryData()
-//    }
-//    
-//    public func updateExchangeRate() {
-//        
-//    }
-//}
-
-

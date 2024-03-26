@@ -7,32 +7,41 @@
 
 import Foundation
 
-class TripData: ObservableObject {
+protocol TripDataProtocol {
+    var country: Country { get }
+    var startDate: Date { get }
+    var endDate: Date { get }
+}
+
+class TripData: ObservableObject, TripDataProtocol {
     var country: Country
     var startDate: Date
     var endDate: Date
-    var currency: Currency
     
     init(
         country: Country = Country(),
         startDate: Date = Date(),
-        endDate: Date = Date(),
-        currency: Currency = Currency()
+        endDate: Date = Date()
     ) {
         self.country = country
         self.startDate = startDate
         self.endDate = endDate
-        self.currency = currency
     }
 }
 
-struct Country {
-    var nameKR: String = ""
-    var countryCode: String = ""
-}
-
-struct Currency {
-    var unit: String = ""
-    var unitInKorean: String = ""
-    var exchangeRate: Double = 0
+extension TripData {
+    func updateCountry(to country: Country) {
+        self.country = country
+    }
+    
+    func updateDate(from startDate: Date, to endDate: Date) {
+        self.startDate = startDate
+        self.endDate = endDate
+    }
+    
+    func updateCurrency(for dict: [String: Double]) {
+        for currency in country.currencies {
+            currency.exchangeRate = dict[currency.code] ?? 0
+        }
+    }
 }

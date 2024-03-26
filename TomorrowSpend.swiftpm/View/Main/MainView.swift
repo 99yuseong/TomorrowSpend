@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var tripData: TripData
     
     @State private var isPresented: Bool = false
     
@@ -40,6 +40,9 @@ struct MainView: View {
         }
         .onAppear {
             isPresented = true
+            DataNetworkingMananger.shared.fetchExchangeRate { dict in
+                tripData.updateCurrency(for: dict)
+            }
         }
     }
 }

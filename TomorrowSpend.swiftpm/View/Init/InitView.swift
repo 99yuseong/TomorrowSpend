@@ -12,8 +12,6 @@ struct InitView: View {
                         isSplashShowing = false
                     }
                 }
-                .font(.aggro(.light, size: 17))
-                .foregroundStyle(Color.appPrimary)
         } else {
             ZStack {
                 switch appState.flow {

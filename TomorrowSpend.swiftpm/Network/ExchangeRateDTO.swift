@@ -1,5 +1,5 @@
 //
-//  ExchangeFromExchangeRateDTO.swift
+//  ExchangeRateDTO.swift
 //
 //
 //  Created by 남유성 on 3/25/24.
@@ -11,9 +11,9 @@ struct ExchangeRateDTO: Codable {
     let result: String
     let documentation: String
     let termsOfUse: String
-    let timeLastUpdateUnix: Int
+    let timeLastUpdateUnix: Double
     let timeLastUpdateUTC: String
-    let timeNextUpdateUnix: Int
+    let timeNextUpdateUnix: Double
     let timeNextUpdateUTC: String
     let baseCode: String
     let conversionRates: [String: Double]
@@ -27,5 +27,9 @@ struct ExchangeRateDTO: Codable {
         case timeNextUpdateUTC = "time_next_update_utc"
         case baseCode = "base_code"
         case conversionRates = "conversion_rates"
+    }
+    
+    func getExchangeRateForKRW(unit: String) -> Double? {
+        return conversionRates[unit]
     }
 }

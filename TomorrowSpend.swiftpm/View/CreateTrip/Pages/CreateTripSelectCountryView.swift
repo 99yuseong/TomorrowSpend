@@ -55,10 +55,9 @@ struct CreateTripSelectCountryView: View {
                     .background(.white)
                     .onTapGesture {
                         isFocused = false
-                        tripData.country = country
+                        tripData.updateCountry(to: country)
                         pagination()
                     }
-                    
                 }
             }
         }

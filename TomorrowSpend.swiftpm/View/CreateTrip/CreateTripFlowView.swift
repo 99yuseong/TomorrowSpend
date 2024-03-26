@@ -44,13 +44,21 @@ struct CreateTripFlowView: View {
                 Group {
                     switch pageTo {
                     case .main:
-                        CreateTripMainView { pagination() }
+                        CreateTripMainView {
+                            pagination()
+                        }
                     case .info:
-                        CreateTripInfoView { pagination() }
+                        CreateTripInfoView {
+                            pagination()
+                        }
                     case .selectCountry:
-                        CreateTripSelectCountryView(countries: $countries) { pagination() }
+                        CreateTripSelectCountryView(countries: $countries) {
+                            pagination()
+                        }
                     case .selectDate:
-                        CreateTripSelectDateView { appState.flow(to: .main) }
+                        CreateTripSelectDateView {
+                            appState.flow(to: .main)
+                        }
                     default:
                         EmptyView()
                     }
@@ -61,7 +69,9 @@ struct CreateTripFlowView: View {
         .background(Color.mainBg)
         .onAppear {
             DispatchQueue.global().async {
-                countries = CountryManager.shared.loadCountryData()
+                DataNetworkingMananger.shared.fetchCountryData {
+                    countries = $0
+                }
             }
         }
     }
