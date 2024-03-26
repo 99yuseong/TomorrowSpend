@@ -52,7 +52,7 @@ struct CreateTripMainView: View {
                         .scaledToFit()
                         .frame(width: 280)
                         .offset(x: -40)
-                        .animation(nil, value: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/0/*@END_MENU_TOKEN@*/)
+                        .animation(nil, value: isComponentShowing)
                     
                     Spacer()
                     Spacer()

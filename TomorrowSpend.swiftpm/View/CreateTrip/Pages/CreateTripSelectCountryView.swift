@@ -10,16 +10,17 @@ import SwiftUI
 extension CreateTripSelectCountryView: Flowable { }
 
 struct CreateTripSelectCountryView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var tripData: TripData
+    @Binding var countries: [Country]
     
     @State private var searchText = ""
     @FocusState private var isFocused: Bool
     
     var filteredCountries: [Country] {
         if searchText.isEmpty {
-            return appState.countries.sorted { $0.nameKR < $1.nameKR }
+            return countries.sorted { $0.nameKR < $1.nameKR }
         } else {
-            return appState.countries.filter { $0.nameKR.contains(searchText) }
+            return countries.filter { $0.nameKR.contains(searchText) }
         }
     }
     
@@ -54,7 +55,7 @@ struct CreateTripSelectCountryView: View {
                     .background(.white)
                     .onTapGesture {
                         isFocused = false
-                        appState.updateTripCountryData(country)
+                        tripData.country = country
                         pagination()
                     }
                     
@@ -66,5 +67,5 @@ struct CreateTripSelectCountryView: View {
 }
 
 #Preview {
-    CreateTripSelectCountryView {}
+    CreateTripSelectCountryView(countries: .constant([])) {}
 }

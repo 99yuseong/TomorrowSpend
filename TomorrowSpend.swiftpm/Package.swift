@@ -8,13 +8,13 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "내일의 소비",
+    name: "TommorrowSpend",
     platforms: [
         .iOS("16.0")
     ],
     products: [
         .iOSApplication(
-            name: "내일의 소비",
+            name: "TommorrowSpen",
             targets: ["AppModule"],
             bundleIdentifier: "com.yuseong.com.TomorrowSpend",
             teamIdentifier: "Q6CK9777WL",

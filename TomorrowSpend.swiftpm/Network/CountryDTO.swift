@@ -27,12 +27,7 @@ struct CountryDTO: Codable {
     func toCountry() -> Country {
         Country(
             nameKR: countryNameKR,
-            countryCode: the3DigitCode,
-            currency: Currency(
-                unit: "",
-                unitInKorean: "",
-                exchangeRate: 0
-            )
+            countryCode: the3DigitCode
         )
     }
 }

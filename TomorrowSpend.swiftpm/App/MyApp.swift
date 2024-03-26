@@ -13,11 +13,7 @@ struct MyApp: App {
         WindowGroup {
             InitView()
                 .environmentObject(appState)
-                .onAppear {
-                    DispatchQueue.global().async {
-                        appState.loadCountries()
-                    }
-                }
+                .environmentObject(tripData)
         }
     }
 }

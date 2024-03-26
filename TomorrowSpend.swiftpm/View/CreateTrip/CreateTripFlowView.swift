@@ -11,16 +11,29 @@ protocol Flowable {
     var pagination: () -> () { get set }
 }
 
+enum Page {
+    case main
+    case info
+    case selectCountry
+    case selectDate
+    case none
+    
+    func nextPage() -> Page {
+        switch self {
+        case .main:
+            return .info
+        case .info:
+            return .selectCountry
+        case .selectCountry:
+            return .selectDate
+        default:
+            return .none
+        }
+    }
+}
+
 struct CreateTripFlowView: View {
     @EnvironmentObject var appState: AppState
-    
-    private enum Page {
-        case main
-        case info
-        case selectCountry
-        case selectDate
-        case none
-    }
     
     @State private var pageTo: Page = .main
     @State private var countries: [Country] = []
@@ -31,11 +44,11 @@ struct CreateTripFlowView: View {
                 Group {
                     switch pageTo {
                     case .main:
-                        CreateTripMainView { page(to: .info) }
+                        CreateTripMainView { pagination() }
                     case .info:
-                        CreateTripInfoView { page(to: .selectCountry) }
+                        CreateTripInfoView { pagination() }
                     case .selectCountry:
-                        CreateTripSelectCountryView { page(to: .selectDate) }
+                        CreateTripSelectCountryView(countries: $countries) { pagination() }
                     case .selectDate:
                         CreateTripSelectDateView { appState.flow(to: .main) }
                     default:
@@ -53,9 +66,9 @@ struct CreateTripFlowView: View {
         }
     }
     
-    private func page(to nextPage: Page) {
+    private func pagination() {
         withAnimation {
-            pageTo = nextPage
+            pageTo = pageTo.nextPage()
         }
     }
 }

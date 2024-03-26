@@ -10,7 +10,7 @@ import SwiftUI
 extension CreateTripSelectDateView: Flowable {}
 
 struct CreateTripSelectDateView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var tripData: TripData
     
     @State private var startDate = Date()
     @State private var endDate = Date()
@@ -22,7 +22,7 @@ struct CreateTripSelectDateView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             VStack(alignment: .leading) {
-                Text(appState.tripData.country.nameKR)
+                Text(tripData.country.nameKR)
                     .foregroundStyle(Color.main)
                 Text("언제 가시나요?")
             }
@@ -53,7 +53,8 @@ struct CreateTripSelectDateView: View {
             }
             
             Button("설정 완료!") {
-                appState.updateTripDate(start: startDate, end: endDate)
+                tripData.startDate = startDate
+                tripData.endDate = endDate
                 pagination()
             }
             .buttonStyle(.rounded(.appPrimary, isEnabled: isBtnEnabled))
