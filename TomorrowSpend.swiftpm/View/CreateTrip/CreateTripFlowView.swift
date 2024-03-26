@@ -11,14 +11,14 @@ protocol Flowable {
     var pagination: () -> () { get set }
 }
 
-enum Page {
+enum CreateTripPage {
     case main
     case info
     case selectCountry
     case selectDate
     case none
     
-    func nextPage() -> Page {
+    func nextPage() -> CreateTripPage {
         switch self {
         case .main:
             return .info
@@ -34,8 +34,8 @@ enum Page {
 
 struct CreateTripFlowView: View {
     @EnvironmentObject var appState: AppState
-    
-    @State private var pageTo: Page = .main
+
+    @State private var pageTo: CreateTripPage = .main
     @State private var countries: [Country] = []
     
     var body: some View {

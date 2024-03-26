@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct SpendRecordFlowView: View {
-    enum Page {
+    @EnvironmentObject var tripData: TripData
+    enum RecordPage {
         case typing
         case category
         case satisfy
+        case none
+        
+        func nextPage() -> RecordPage {
+            switch self {
+            case .typing:
+                return .category
+            case .category:
+                return .satisfy
+            default:
+                return .none
+            }
+        }
     }
     
-    @State private var pageTo: Page = .typing
+    @StateObject private var viewModel: SpendFlowModel = SpendFlowModel()
+    @State private var pageTo: RecordPage = .typing
     
     var body: some View {
         NavigationStack {
@@ -22,11 +36,18 @@ struct SpendRecordFlowView: View {
                 Group {
                     switch pageTo {
                     case .typing:
-                        SpendRecordTypingView { page(to: .category) }
+                        SpendRecordTypingView(
+                            viewModel: viewModel,
+                            currencyList: tripData.country.currencies
+                        ) {
+                            pagination()
+                        }
                     case .category:
-                        SpendRecordCategoryView { page(to: .satisfy) }
+                        SpendRecordCategoryView { pagination() }
                     case .satisfy:
                         SpendRecordSatisfyView {  }
+                    case .none:
+                        EmptyView()
                     }
                 }
                 .transition(.reverSlide)
@@ -34,9 +55,9 @@ struct SpendRecordFlowView: View {
         }
     }
     
-    private func page(to nextPage: Page) {
+    private func pagination() {
         withAnimation {
-            pageTo = nextPage
+            pageTo = pageTo.nextPage()
         }
     }
 }

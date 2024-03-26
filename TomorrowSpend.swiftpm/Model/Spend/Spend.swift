@@ -1,11 +1,27 @@
 //
-//  SpendCategory.swift
+//  Spend.swift
 //
 //
-//  Created by 남유성 on 3/25/24.
+//  Created by 남유성 on 3/27/24.
 //
 
 import Foundation
+
+struct Spend {
+    var currencyType: String
+    var amount: Double
+    var exchangeRate: Double
+    var type: SpendType
+    var category: SpendCategory
+    var memo: String
+    var satisfaction: SpendSatisfaction
+}
+
+enum SpendType {
+    case card
+    case cash
+    case notSet
+}
 
 enum SpendCategory: CaseIterable {
     case meal
@@ -46,6 +62,23 @@ enum SpendCategory: CaseIterable {
             ["호텔", "펜션", "게스트하우스"]
         case .others:
             []
+        }
+    }
+}
+
+enum SpendSatisfaction: CaseIterable {
+    case notSet
+    case satisfied
+    case dissatisfied
+    
+    var description: String {
+        switch self {
+        case .notSet:
+            "스킵"
+        case .satisfied:
+            "만족"
+        case .dissatisfied:
+            "아쉽"
         }
     }
 }

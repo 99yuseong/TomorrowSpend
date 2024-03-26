@@ -7,13 +7,7 @@
 
 import Foundation
 
-protocol TripDataProtocol {
-    var country: Country { get }
-    var startDate: Date { get }
-    var endDate: Date { get }
-}
-
-class TripData: ObservableObject, TripDataProtocol {
+class TripData: ObservableObject {
     var country: Country
     var startDate: Date
     var endDate: Date

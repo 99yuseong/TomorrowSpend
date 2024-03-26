@@ -11,9 +11,9 @@ extension SpendRecordTypingView: Flowable { }
 
 struct SpendRecordTypingView: View {
     
-    @State private var currencyList: [Currency] = []
-    @State private var selectedCurrency: Int = 0
-    @State private var amount: String = ""
+    @ObservedObject var viewModel: SpendFlowModel
+    @State private var displayAmount: String = ""
+    let currencyList: [Currency]
     
     private let buttons = [
         ["7", "8", "9"],
@@ -32,19 +32,30 @@ struct SpendRecordTypingView: View {
                 .padding(.bottom, 40)
             
             HStack(alignment: .top, spacing: 40) {
-                ForEach(Array(currencyList.enumerated()), id: \.offset) { idx, element in
-                    currencyButton(of: idx)
+                ForEach(currencyList, id: \.code) { currency in
+                    currencyButton(currency)
                 }
             }
             .font(.aggro(.medium, size: 18))
             
-            Text(amount.isEmpty ? "금액을 입력하세요" : "\(amount)")
-                .font(.aggro(amount.isEmpty ? .light : .medium, size: 24))
-                .foregroundStyle(amount.isEmpty ? Color.gray5 : Color.appPrimary)
-            
-            if !amount.isEmpty {
-//                CurrencyManager.shared.convert(<#T##value: Double##Double#>)
+            VStack {
+                if displayAmount.isEmpty {
+                    Text("금액을 입력하세요")
+                } else {
+                    ZStack {
+                        Text("\(displayAmount) \(viewModel.currencyType)")
+                        if viewModel.currencyType != "KRW" {
+                            Text(toKRW(of: displayAmount.currencyToDouble()))
+                                .font(.aggro(.light, size: 16))
+                                .foregroundStyle(Color.gray4)
+                                .padding(.top, 100)
+                        }
+                    }
+                }
             }
+            .font(.aggro(displayAmount.isEmpty ? .light : .medium, size: 24))
+            .foregroundStyle(displayAmount.isEmpty ? Color.gray5 : Color.appPrimary)
+            .scaleToInfinity()
             
             VStack(spacing: 0) {
                 ForEach(buttons, id: \.self) { btn in
@@ -65,17 +76,23 @@ struct SpendRecordTypingView: View {
             
             HStack(spacing: 8) {
                 Button("카드 지출") {
+                    viewModel.type = .card
                     pagination()
                 }
                 .buttonStyle(.rounded(.accent))
                 
                 Button("현금 지출") {
+                    viewModel.type = .cash
                     pagination()
                 }
                 .buttonStyle(.rounded(.main))
             }
         }
         .padding(.horizontal, 20)
+        .onAppear {
+            viewModel.currencyType = currencyList.first?.code ?? ""
+            viewModel.exchangeRate = currencyList.first?.exchangeRate ?? 0
+        }
     }
     
     @ViewBuilder
@@ -95,43 +112,52 @@ struct SpendRecordTypingView: View {
         }
     }
     
-    func currencyButton(of idx: Int) -> some View {
+    @ViewBuilder
+    func currencyButton(_ currency: Currency) -> some View {
         Button {
-            selectedCurrency = idx
+            viewModel.currencyType = currency.code
+            viewModel.exchangeRate = currency.exchangeRate
         } label: {
             VStack(spacing: -12) {
-                Text(currencyList[idx].unit)
+                Text(currency.code)
                     .padding()
-                if selectedCurrency == idx {
+                if viewModel.currencyType == currency.code {
                     RoundedRectangle(cornerRadius: 1.5)
                         .frame(width: 36, height: 3)
                 }
             }
         }
-        .foregroundStyle(selectedCurrency == idx ? Color.appPrimary : Color.gray5)
+        .foregroundStyle(viewModel.currencyType == currency.code ? Color.appPrimary : Color.gray5)
     }
 }
 
-extension SpendRecordTypingView {
+extension SpendRecordTypingView {    
+    func toKRW(of num: Double) -> String {
+        return (num / viewModel.exchangeRate).toString(maxFractionDigit: 0) + "원"
+    }
+    
     func buttonTapped(_ label: String) {
         switch label {
         case "erase":
-            if !amount.isEmpty {
-                amount.removeLast()
+            if !displayAmount.isEmpty {
+                displayAmount.removeLast()
             }
             return
         case ".":
-            guard let last = amount.last,
+            guard let last = displayAmount.last,
                   last != "."
             else { return }
-            amount += label
+            displayAmount += label
         default:
-            let newValue = amount + label
-            amount = newValue.currencyToDouble().toString()
+            let newValue = displayAmount + label
+            displayAmount = newValue.currencyToDouble().toString()
         }
     }
 }
 
 #Preview {
-    SpendRecordTypingView {}
+    SpendRecordTypingView(viewModel: SpendFlowModel(), currencyList: [
+        Currency(exchangeRate: 0.5, code: "JPY"),
+        Currency(exchangeRate: 1, code: "KRW")
+    ], pagination: {})
 }
