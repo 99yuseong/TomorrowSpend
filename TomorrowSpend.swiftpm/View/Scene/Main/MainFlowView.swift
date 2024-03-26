@@ -27,7 +27,7 @@ struct MainFlowView: View {
                     Text("소비 체크")
                 }
             
-            MainSpendHistoryView()
+            MainSpendHistoryView(spendingHistory: spendingHistory)
                 .tabItem {
                     Image(systemName: Icons.card)
                         .fontWeight(.thin)

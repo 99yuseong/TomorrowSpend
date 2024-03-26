@@ -33,6 +33,7 @@ extension SpendingHistoryModel {
     }
 }
 
+// TODO: - Date 정보 넣기
 class SpendingModel: ObservableObject, Identifiable {
     let id = UUID()
     
