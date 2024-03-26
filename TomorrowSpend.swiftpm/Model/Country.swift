@@ -30,4 +30,6 @@ class Currency: ObservableObject {
         self.unit = unit
         self.symbol = symbol
     }
+    
+    static let KRW = Currency(exchangeRate: 1, code: "KRW", unit: "WON", symbol: "₩")
 }

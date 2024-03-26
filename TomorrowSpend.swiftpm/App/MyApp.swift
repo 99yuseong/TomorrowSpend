@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct MyApp: App {
     @StateObject var appState = AppState()
-    @StateObject var tripData = TripData()
+    @StateObject var tripData = TripModel()
     
     init() {
         FontManager.registerFonts()

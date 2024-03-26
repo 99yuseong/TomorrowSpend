@@ -11,4 +11,8 @@ extension Font {
     static func aggro(_ font: FontAggro, size: CGFloat) -> Font {
         return Font.custom(font.rawValue, size: size)
     }
+    
+    static func tossFace(size: CGFloat) -> Font {
+        return Font.custom(FontTossFace.basic.rawValue, size: size)
+    }
 }
